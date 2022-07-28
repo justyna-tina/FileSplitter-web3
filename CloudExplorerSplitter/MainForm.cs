@@ -11,18 +11,18 @@ using System.Windows.Forms;
 
 namespace CloudExplorerSplitter
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void splitButton_Click(object sender, EventArgs e)
         {
             //get parameters; default n= 2?
-            int n = int.Parse(textBox2.Text);
-            string filename = textBox1.Text;
+            int n = int.Parse(splitNTextBox.Text);
+            string filename = splitInputFileTextBox.Text;
 
             //create main folder
             string path = @".\."+ filename;
@@ -119,11 +119,11 @@ namespace CloudExplorerSplitter
             return;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void mergeButton_Click(object sender, EventArgs e)
         {
             //get parameters; default n= 2?
-            int n = int.Parse(textBox2.Text);
-            string filename = textBox1.Text;
+            int n = int.Parse(mergeNTextBox.Text);
+            string filename = mergeInputFileTextBox.Text;
 
             //create main folder
             string path = @".\." + filename;
@@ -179,6 +179,11 @@ namespace CloudExplorerSplitter
             fsas = null;
 
             richTextBox1.AppendText("Merged\n");
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
