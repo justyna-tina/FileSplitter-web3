@@ -20,6 +20,9 @@ namespace CloudExplorerSplitter
 
         private void splitButton_Click(object sender, EventArgs e)
         {
+            mainProgressBar.Value = 0;
+            mainProgressBar.Value = mainProgressBar.Maximum / 2;
+
             //get parameters; default n= 2?
             int n = int.Parse(splitNTextBox.Text);
             string filename = splitInputFileTextBox.Text;
@@ -34,10 +37,15 @@ namespace CloudExplorerSplitter
             {
                 richTextBox1.AppendText("Divided\n");
             }
+
+            mainProgressBar.Value = mainProgressBar.Maximum;
         }
 
         private void mergeButton_Click(object sender, EventArgs e)
         {
+            mainProgressBar.Value = 0;
+            mainProgressBar.Value = mainProgressBar.Maximum / 2;
+
             //get parameters; default n= 2?
             int n = int.Parse(mergeNTextBox.Text);
             string filename = mergeInputFileTextBox.Text;
@@ -48,6 +56,8 @@ namespace CloudExplorerSplitter
             {
                 richTextBox1.AppendText("Merged\n");
             }
+
+            mainProgressBar.Value = mainProgressBar.Maximum;
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)

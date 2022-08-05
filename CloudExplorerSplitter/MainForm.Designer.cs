@@ -48,6 +48,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.mergeNTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.mainProgressBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -86,12 +87,11 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(12, 13);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 33);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(776, 89);
+            this.richTextBox1.Size = new System.Drawing.Size(776, 158);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
@@ -166,7 +166,7 @@
             this.mainTabControl.Location = new System.Drawing.Point(12, 27);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(776, 303);
+            this.mainTabControl.Size = new System.Drawing.Size(776, 218);
             this.mainTabControl.TabIndex = 9;
             // 
             // tabPage1
@@ -180,7 +180,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(768, 277);
+            this.tabPage1.Size = new System.Drawing.Size(768, 192);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Split / Divide";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -248,12 +248,24 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.mainProgressBar);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 336);
+            this.panel1.Location = new System.Drawing.Point(0, 247);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 114);
+            this.panel1.Size = new System.Drawing.Size(800, 203);
             this.panel1.TabIndex = 10;
+            // 
+            // mainProgressBar
+            // 
+            this.mainProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainProgressBar.Location = new System.Drawing.Point(12, 4);
+            this.mainProgressBar.Name = "mainProgressBar";
+            this.mainProgressBar.Size = new System.Drawing.Size(776, 23);
+            this.mainProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.mainProgressBar.TabIndex = 4;
             // 
             // MainForm
             // 
@@ -301,6 +313,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox mergeNTextBox;
+        private System.Windows.Forms.ProgressBar mainProgressBar;
     }
 }
 
