@@ -49,6 +49,15 @@
             this.mergeNTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.mainProgressBar = new System.Windows.Forms.ProgressBar();
+            this.label7 = new System.Windows.Forms.Label();
+            this.splitOutputFileTextBox = new System.Windows.Forms.TextBox();
+            this.inputBrowseButton = new System.Windows.Forms.Button();
+            this.outputBrowseButton = new System.Windows.Forms.Button();
+            this.outputMergeBrowseButton = new System.Windows.Forms.Button();
+            this.inputMergeBrowseButton = new System.Windows.Forms.Button();
+            this.mergeOutputFileTextBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -60,9 +69,9 @@
             // 
             this.splitInputFileTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitInputFileTextBox.Location = new System.Drawing.Point(68, 6);
+            this.splitInputFileTextBox.Location = new System.Drawing.Point(89, 6);
             this.splitInputFileTextBox.Name = "splitInputFileTextBox";
-            this.splitInputFileTextBox.Size = new System.Drawing.Size(694, 20);
+            this.splitInputFileTextBox.Size = new System.Drawing.Size(592, 20);
             this.splitInputFileTextBox.TabIndex = 0;
             this.splitInputFileTextBox.Text = "test.txt";
             // 
@@ -98,7 +107,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 59);
+            this.label2.Location = new System.Drawing.Point(6, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 4;
@@ -107,7 +116,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(137, 59);
+            this.label3.Location = new System.Drawing.Point(151, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(25, 13);
             this.label3.TabIndex = 5;
@@ -115,7 +124,7 @@
             // 
             // splitNTextBox
             // 
-            this.splitNTextBox.Location = new System.Drawing.Point(75, 56);
+            this.splitNTextBox.Location = new System.Drawing.Point(89, 64);
             this.splitNTextBox.Name = "splitNTextBox";
             this.splitNTextBox.Size = new System.Drawing.Size(56, 20);
             this.splitNTextBox.TabIndex = 6;
@@ -171,6 +180,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.outputBrowseButton);
+            this.tabPage1.Controls.Add(this.inputBrowseButton);
+            this.tabPage1.Controls.Add(this.splitOutputFileTextBox);
+            this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.splitInputFileTextBox);
             this.tabPage1.Controls.Add(this.label2);
@@ -187,6 +200,11 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.outputMergeBrowseButton);
+            this.tabPage2.Controls.Add(this.inputMergeBrowseButton);
+            this.tabPage2.Controls.Add(this.mergeOutputFileTextBox);
+            this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.mergeInputFileTextBox);
             this.tabPage2.Controls.Add(this.label5);
@@ -196,7 +214,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(768, 277);
+            this.tabPage2.Size = new System.Drawing.Size(768, 192);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Merge / Unite";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -206,33 +224,33 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.Size = new System.Drawing.Size(82, 13);
             this.label4.TabIndex = 9;
-            this.label4.Text = "File to split";
+            this.label4.Text = "Directory to split";
             // 
             // mergeInputFileTextBox
             // 
             this.mergeInputFileTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mergeInputFileTextBox.Location = new System.Drawing.Point(68, 12);
+            this.mergeInputFileTextBox.Location = new System.Drawing.Point(89, 12);
             this.mergeInputFileTextBox.Name = "mergeInputFileTextBox";
-            this.mergeInputFileTextBox.Size = new System.Drawing.Size(694, 20);
+            this.mergeInputFileTextBox.Size = new System.Drawing.Size(592, 20);
             this.mergeInputFileTextBox.TabIndex = 8;
-            this.mergeInputFileTextBox.Text = "test.txt";
+            this.mergeInputFileTextBox.Text = ".test.txt";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 65);
+            this.label5.Location = new System.Drawing.Point(6, 80);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.Size = new System.Drawing.Size(63, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Divide into";
+            this.label5.Text = "Divided into";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(137, 65);
+            this.label6.Location = new System.Drawing.Point(131, 80);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(25, 13);
             this.label6.TabIndex = 11;
@@ -240,7 +258,7 @@
             // 
             // mergeNTextBox
             // 
-            this.mergeNTextBox.Location = new System.Drawing.Point(75, 62);
+            this.mergeNTextBox.Location = new System.Drawing.Point(69, 77);
             this.mergeNTextBox.Name = "mergeNTextBox";
             this.mergeNTextBox.Size = new System.Drawing.Size(56, 20);
             this.mergeNTextBox.TabIndex = 12;
@@ -266,6 +284,89 @@
             this.mainProgressBar.Size = new System.Drawing.Size(776, 23);
             this.mainProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.mainProgressBar.TabIndex = 4;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 35);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Output directory";
+            // 
+            // splitOutputFileTextBox
+            // 
+            this.splitOutputFileTextBox.Location = new System.Drawing.Point(89, 32);
+            this.splitOutputFileTextBox.Name = "splitOutputFileTextBox";
+            this.splitOutputFileTextBox.Size = new System.Drawing.Size(592, 20);
+            this.splitOutputFileTextBox.TabIndex = 8;
+            this.splitOutputFileTextBox.Text = ".test.txt";
+            // 
+            // inputBrowseButton
+            // 
+            this.inputBrowseButton.Location = new System.Drawing.Point(687, 4);
+            this.inputBrowseButton.Name = "inputBrowseButton";
+            this.inputBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.inputBrowseButton.TabIndex = 9;
+            this.inputBrowseButton.Text = "Browse...";
+            this.inputBrowseButton.UseVisualStyleBackColor = true;
+            this.inputBrowseButton.Click += new System.EventHandler(this.inputBrowseButton_Click);
+            // 
+            // outputBrowseButton
+            // 
+            this.outputBrowseButton.Location = new System.Drawing.Point(687, 30);
+            this.outputBrowseButton.Name = "outputBrowseButton";
+            this.outputBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.outputBrowseButton.TabIndex = 10;
+            this.outputBrowseButton.Text = "Browse...";
+            this.outputBrowseButton.UseVisualStyleBackColor = true;
+            this.outputBrowseButton.Click += new System.EventHandler(this.outputBrowseButton_Click);
+            // 
+            // outputMergeBrowseButton
+            // 
+            this.outputMergeBrowseButton.Location = new System.Drawing.Point(687, 36);
+            this.outputMergeBrowseButton.Name = "outputMergeBrowseButton";
+            this.outputMergeBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.outputMergeBrowseButton.TabIndex = 16;
+            this.outputMergeBrowseButton.Text = "Browse...";
+            this.outputMergeBrowseButton.UseVisualStyleBackColor = true;
+            this.outputMergeBrowseButton.Click += new System.EventHandler(this.outputMergeBrowseButton_Click);
+            // 
+            // inputMergeBrowseButton
+            // 
+            this.inputMergeBrowseButton.Location = new System.Drawing.Point(687, 10);
+            this.inputMergeBrowseButton.Name = "inputMergeBrowseButton";
+            this.inputMergeBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.inputMergeBrowseButton.TabIndex = 15;
+            this.inputMergeBrowseButton.Text = "Browse...";
+            this.inputMergeBrowseButton.UseVisualStyleBackColor = true;
+            this.inputMergeBrowseButton.Click += new System.EventHandler(this.inputMergeBrowseButton_Click);
+            // 
+            // mergeOutputFileTextBox
+            // 
+            this.mergeOutputFileTextBox.Location = new System.Drawing.Point(89, 38);
+            this.mergeOutputFileTextBox.Name = "mergeOutputFileTextBox";
+            this.mergeOutputFileTextBox.Size = new System.Drawing.Size(592, 20);
+            this.mergeOutputFileTextBox.TabIndex = 14;
+            this.mergeOutputFileTextBox.Text = "test.txt";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 41);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Output file";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(343, 74);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(245, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Output file should be the same as original filename!";
             // 
             // MainForm
             // 
@@ -314,6 +415,15 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox mergeNTextBox;
         private System.Windows.Forms.ProgressBar mainProgressBar;
+        private System.Windows.Forms.TextBox splitOutputFileTextBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button outputBrowseButton;
+        private System.Windows.Forms.Button inputBrowseButton;
+        private System.Windows.Forms.Button outputMergeBrowseButton;
+        private System.Windows.Forms.Button inputMergeBrowseButton;
+        private System.Windows.Forms.TextBox mergeOutputFileTextBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
 
