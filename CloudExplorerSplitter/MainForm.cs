@@ -111,5 +111,64 @@ namespace CloudExplorerSplitter
             }
             Console.WriteLine(result);
         }
+
+        private void inputDirBrowseButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog inputDirBrowserDialog = new FolderBrowserDialog();
+            inputDirBrowserDialog.SelectedPath = Directory.GetCurrentDirectory();
+            DialogResult result = inputDirBrowserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                splitInputDirTextBox.Text = inputDirBrowserDialog.SelectedPath;
+            }
+            Console.WriteLine(result);
+        }
+
+        private void disperseButton_Click(object sender, EventArgs e)
+        {
+            //create folder
+            //create config file
+            //create n folders
+            //split every file; version 1: name without number
+            //subdirectories??? how do directory name changes? 1 version without changes; 2 version: letters + hash
+            
+            mainProgressBar.Value = 0;
+            mainProgressBar.Value = mainProgressBar.Maximum / 2;
+
+            //get parameters; default n= 2?
+            int n = int.Parse(splitDirNTextBox.Text);
+            if (n < 2 || n > 4)
+            {
+                richTextBox1.AppendText("Bad parameter n.\n");
+                mainProgressBar.Value = mainProgressBar.Maximum;
+                return;
+            }
+            string dirPath = splitInputDirTextBox.Text;
+            List<string> virtualDirectoryNames = new List<string>();
+            virtualDirectoryNames.Add(descriptionDir1TextBox.Text);
+            virtualDirectoryNames.Add(descriptionDir2TextBox.Text);
+            if (n >= 3) { virtualDirectoryNames.Add(descriptionDir3TextBox.Text); }
+            if (n >= 4) { virtualDirectoryNames.Add(descriptionDir4TextBox.Text); }
+
+            //int disperseResult = 0;
+            int disperseResult = Disperser.Disperse(dirPath, n, virtualDirectoryNames);
+            
+            if (disperseResult == 0)
+            {
+                richTextBox1.AppendText("Dispersed\n");
+            }
+
+            mainProgressBar.Value = mainProgressBar.Maximum;
+        }
+
+        private void concentrateButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Under construction");
+        }
+
+        private void syncButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Under construction");
+        }
     }
 }

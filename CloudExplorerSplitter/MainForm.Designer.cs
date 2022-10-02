@@ -41,7 +41,16 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.outputBrowseButton = new System.Windows.Forms.Button();
+            this.inputBrowseButton = new System.Windows.Forms.Button();
+            this.splitOutputFileTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.outputMergeBrowseButton = new System.Windows.Forms.Button();
+            this.inputMergeBrowseButton = new System.Windows.Forms.Button();
+            this.mergeOutputFileTextBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.mergeInputFileTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -49,20 +58,31 @@
             this.mergeNTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.mainProgressBar = new System.Windows.Forms.ProgressBar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.splitOutputFileTextBox = new System.Windows.Forms.TextBox();
-            this.inputBrowseButton = new System.Windows.Forms.Button();
-            this.outputBrowseButton = new System.Windows.Forms.Button();
-            this.outputMergeBrowseButton = new System.Windows.Forms.Button();
-            this.inputMergeBrowseButton = new System.Windows.Forms.Button();
-            this.mergeOutputFileTextBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.inputDirBrowseButton = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.splitInputDirTextBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.splitDirNTextBox = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.descriptionDir1TextBox = new System.Windows.Forms.TextBox();
+            this.descriptionDir2TextBox = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.descriptionDir3TextBox = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.descriptionDir4TextBox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.disperseButton = new System.Windows.Forms.Button();
+            this.concentrateButton = new System.Windows.Forms.Button();
+            this.syncButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitInputFileTextBox
@@ -172,6 +192,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mainTabControl.Controls.Add(this.tabPage1);
             this.mainTabControl.Controls.Add(this.tabPage2);
+            this.mainTabControl.Controls.Add(this.tabPage3);
             this.mainTabControl.Location = new System.Drawing.Point(12, 27);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
@@ -198,6 +219,43 @@
             this.tabPage1.Text = "Split / Divide";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // outputBrowseButton
+            // 
+            this.outputBrowseButton.Location = new System.Drawing.Point(687, 30);
+            this.outputBrowseButton.Name = "outputBrowseButton";
+            this.outputBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.outputBrowseButton.TabIndex = 10;
+            this.outputBrowseButton.Text = "Browse...";
+            this.outputBrowseButton.UseVisualStyleBackColor = true;
+            this.outputBrowseButton.Click += new System.EventHandler(this.outputBrowseButton_Click);
+            // 
+            // inputBrowseButton
+            // 
+            this.inputBrowseButton.Location = new System.Drawing.Point(687, 4);
+            this.inputBrowseButton.Name = "inputBrowseButton";
+            this.inputBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.inputBrowseButton.TabIndex = 9;
+            this.inputBrowseButton.Text = "Browse...";
+            this.inputBrowseButton.UseVisualStyleBackColor = true;
+            this.inputBrowseButton.Click += new System.EventHandler(this.inputBrowseButton_Click);
+            // 
+            // splitOutputFileTextBox
+            // 
+            this.splitOutputFileTextBox.Location = new System.Drawing.Point(89, 32);
+            this.splitOutputFileTextBox.Name = "splitOutputFileTextBox";
+            this.splitOutputFileTextBox.Size = new System.Drawing.Size(592, 20);
+            this.splitOutputFileTextBox.TabIndex = 8;
+            this.splitOutputFileTextBox.Text = ".test.txt";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 35);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Output directory";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label9);
@@ -218,6 +276,52 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Merge / Unite";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(343, 74);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(245, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Output file should be the same as original filename!";
+            // 
+            // outputMergeBrowseButton
+            // 
+            this.outputMergeBrowseButton.Location = new System.Drawing.Point(687, 36);
+            this.outputMergeBrowseButton.Name = "outputMergeBrowseButton";
+            this.outputMergeBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.outputMergeBrowseButton.TabIndex = 16;
+            this.outputMergeBrowseButton.Text = "Browse...";
+            this.outputMergeBrowseButton.UseVisualStyleBackColor = true;
+            this.outputMergeBrowseButton.Click += new System.EventHandler(this.outputMergeBrowseButton_Click);
+            // 
+            // inputMergeBrowseButton
+            // 
+            this.inputMergeBrowseButton.Location = new System.Drawing.Point(687, 10);
+            this.inputMergeBrowseButton.Name = "inputMergeBrowseButton";
+            this.inputMergeBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.inputMergeBrowseButton.TabIndex = 15;
+            this.inputMergeBrowseButton.Text = "Browse...";
+            this.inputMergeBrowseButton.UseVisualStyleBackColor = true;
+            this.inputMergeBrowseButton.Click += new System.EventHandler(this.inputMergeBrowseButton_Click);
+            // 
+            // mergeOutputFileTextBox
+            // 
+            this.mergeOutputFileTextBox.Location = new System.Drawing.Point(89, 38);
+            this.mergeOutputFileTextBox.Name = "mergeOutputFileTextBox";
+            this.mergeOutputFileTextBox.Size = new System.Drawing.Size(592, 20);
+            this.mergeOutputFileTextBox.TabIndex = 14;
+            this.mergeOutputFileTextBox.Text = "test.txt";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 41);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Output file";
             // 
             // label4
             // 
@@ -285,88 +389,193 @@
             this.mainProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.mainProgressBar.TabIndex = 4;
             // 
-            // label7
+            // tabPage3
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 35);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Output directory";
+            this.tabPage3.Controls.Add(this.syncButton);
+            this.tabPage3.Controls.Add(this.concentrateButton);
+            this.tabPage3.Controls.Add(this.disperseButton);
+            this.tabPage3.Controls.Add(this.label17);
+            this.tabPage3.Controls.Add(this.descriptionDir4TextBox);
+            this.tabPage3.Controls.Add(this.label16);
+            this.tabPage3.Controls.Add(this.descriptionDir3TextBox);
+            this.tabPage3.Controls.Add(this.label15);
+            this.tabPage3.Controls.Add(this.descriptionDir2TextBox);
+            this.tabPage3.Controls.Add(this.label14);
+            this.tabPage3.Controls.Add(this.descriptionDir1TextBox);
+            this.tabPage3.Controls.Add(this.label13);
+            this.tabPage3.Controls.Add(this.inputDirBrowseButton);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.splitInputDirTextBox);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.splitDirNTextBox);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(768, 192);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Cloud Dispersion";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // splitOutputFileTextBox
+            // inputDirBrowseButton
             // 
-            this.splitOutputFileTextBox.Location = new System.Drawing.Point(89, 32);
-            this.splitOutputFileTextBox.Name = "splitOutputFileTextBox";
-            this.splitOutputFileTextBox.Size = new System.Drawing.Size(592, 20);
-            this.splitOutputFileTextBox.TabIndex = 8;
-            this.splitOutputFileTextBox.Text = ".test.txt";
+            this.inputDirBrowseButton.Location = new System.Drawing.Point(684, 6);
+            this.inputDirBrowseButton.Name = "inputDirBrowseButton";
+            this.inputDirBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.inputDirBrowseButton.TabIndex = 15;
+            this.inputDirBrowseButton.Text = "Browse...";
+            this.inputDirBrowseButton.UseVisualStyleBackColor = true;
+            this.inputDirBrowseButton.Click += new System.EventHandler(this.inputDirBrowseButton_Click);
             // 
-            // inputBrowseButton
+            // label10
             // 
-            this.inputBrowseButton.Location = new System.Drawing.Point(687, 4);
-            this.inputBrowseButton.Name = "inputBrowseButton";
-            this.inputBrowseButton.Size = new System.Drawing.Size(75, 23);
-            this.inputBrowseButton.TabIndex = 9;
-            this.inputBrowseButton.Text = "Browse...";
-            this.inputBrowseButton.UseVisualStyleBackColor = true;
-            this.inputBrowseButton.Click += new System.EventHandler(this.inputBrowseButton_Click);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 11);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(82, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Directory to split";
             // 
-            // outputBrowseButton
+            // splitInputDirTextBox
             // 
-            this.outputBrowseButton.Location = new System.Drawing.Point(687, 30);
-            this.outputBrowseButton.Name = "outputBrowseButton";
-            this.outputBrowseButton.Size = new System.Drawing.Size(75, 23);
-            this.outputBrowseButton.TabIndex = 10;
-            this.outputBrowseButton.Text = "Browse...";
-            this.outputBrowseButton.UseVisualStyleBackColor = true;
-            this.outputBrowseButton.Click += new System.EventHandler(this.outputBrowseButton_Click);
+            this.splitInputDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitInputDirTextBox.Location = new System.Drawing.Point(86, 8);
+            this.splitInputDirTextBox.Name = "splitInputDirTextBox";
+            this.splitInputDirTextBox.Size = new System.Drawing.Size(592, 20);
+            this.splitInputDirTextBox.TabIndex = 10;
+            this.splitInputDirTextBox.Text = "test1";
             // 
-            // outputMergeBrowseButton
+            // label11
             // 
-            this.outputMergeBrowseButton.Location = new System.Drawing.Point(687, 36);
-            this.outputMergeBrowseButton.Name = "outputMergeBrowseButton";
-            this.outputMergeBrowseButton.Size = new System.Drawing.Size(75, 23);
-            this.outputMergeBrowseButton.TabIndex = 16;
-            this.outputMergeBrowseButton.Text = "Browse...";
-            this.outputMergeBrowseButton.UseVisualStyleBackColor = true;
-            this.outputMergeBrowseButton.Click += new System.EventHandler(this.outputMergeBrowseButton_Click);
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 33);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(68, 13);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Disperse into";
             // 
-            // inputMergeBrowseButton
+            // label12
             // 
-            this.inputMergeBrowseButton.Location = new System.Drawing.Point(687, 10);
-            this.inputMergeBrowseButton.Name = "inputMergeBrowseButton";
-            this.inputMergeBrowseButton.Size = new System.Drawing.Size(75, 23);
-            this.inputMergeBrowseButton.TabIndex = 15;
-            this.inputMergeBrowseButton.Text = "Browse...";
-            this.inputMergeBrowseButton.UseVisualStyleBackColor = true;
-            this.inputMergeBrowseButton.Click += new System.EventHandler(this.inputMergeBrowseButton_Click);
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(148, 33);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(99, 13);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "files (min: 2; max: 4)";
             // 
-            // mergeOutputFileTextBox
+            // splitDirNTextBox
             // 
-            this.mergeOutputFileTextBox.Location = new System.Drawing.Point(89, 38);
-            this.mergeOutputFileTextBox.Name = "mergeOutputFileTextBox";
-            this.mergeOutputFileTextBox.Size = new System.Drawing.Size(592, 20);
-            this.mergeOutputFileTextBox.TabIndex = 14;
-            this.mergeOutputFileTextBox.Text = "test.txt";
+            this.splitDirNTextBox.Location = new System.Drawing.Point(86, 30);
+            this.splitDirNTextBox.Name = "splitDirNTextBox";
+            this.splitDirNTextBox.Size = new System.Drawing.Size(56, 20);
+            this.splitDirNTextBox.TabIndex = 14;
+            this.splitDirNTextBox.Text = "3";
             // 
-            // label8
+            // label13
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 41);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 13);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Output file";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(67, 57);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(13, 13);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "1";
             // 
-            // label9
+            // descriptionDir1TextBox
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(343, 74);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(245, 13);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Output file should be the same as original filename!";
+            this.descriptionDir1TextBox.Location = new System.Drawing.Point(86, 54);
+            this.descriptionDir1TextBox.Name = "descriptionDir1TextBox";
+            this.descriptionDir1TextBox.Size = new System.Drawing.Size(592, 20);
+            this.descriptionDir1TextBox.TabIndex = 17;
+            this.descriptionDir1TextBox.Text = "Google Drive";
+            // 
+            // descriptionDir2TextBox
+            // 
+            this.descriptionDir2TextBox.Location = new System.Drawing.Point(86, 80);
+            this.descriptionDir2TextBox.Name = "descriptionDir2TextBox";
+            this.descriptionDir2TextBox.Size = new System.Drawing.Size(592, 20);
+            this.descriptionDir2TextBox.TabIndex = 19;
+            this.descriptionDir2TextBox.Text = "Microsoft OneDrive";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(67, 83);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(13, 13);
+            this.label14.TabIndex = 18;
+            this.label14.Text = "2";
+            // 
+            // descriptionDir3TextBox
+            // 
+            this.descriptionDir3TextBox.Location = new System.Drawing.Point(86, 106);
+            this.descriptionDir3TextBox.Name = "descriptionDir3TextBox";
+            this.descriptionDir3TextBox.Size = new System.Drawing.Size(592, 20);
+            this.descriptionDir3TextBox.TabIndex = 21;
+            this.descriptionDir3TextBox.Text = "Dropbox";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(67, 109);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(13, 13);
+            this.label15.TabIndex = 20;
+            this.label15.Text = "3";
+            // 
+            // descriptionDir4TextBox
+            // 
+            this.descriptionDir4TextBox.Location = new System.Drawing.Point(86, 132);
+            this.descriptionDir4TextBox.Name = "descriptionDir4TextBox";
+            this.descriptionDir4TextBox.Size = new System.Drawing.Size(592, 20);
+            this.descriptionDir4TextBox.TabIndex = 23;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(67, 135);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(13, 13);
+            this.label16.TabIndex = 22;
+            this.label16.Text = "4";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(3, 57);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(63, 13);
+            this.label17.TabIndex = 24;
+            this.label17.Text = "Descritpion:";
+            // 
+            // disperseButton
+            // 
+            this.disperseButton.Location = new System.Drawing.Point(6, 166);
+            this.disperseButton.Name = "disperseButton";
+            this.disperseButton.Size = new System.Drawing.Size(75, 23);
+            this.disperseButton.TabIndex = 25;
+            this.disperseButton.Text = "Disperse";
+            this.disperseButton.UseVisualStyleBackColor = true;
+            this.disperseButton.Click += new System.EventHandler(this.disperseButton_Click);
+            // 
+            // concentrateButton
+            // 
+            this.concentrateButton.Location = new System.Drawing.Point(86, 166);
+            this.concentrateButton.Name = "concentrateButton";
+            this.concentrateButton.Size = new System.Drawing.Size(75, 23);
+            this.concentrateButton.TabIndex = 26;
+            this.concentrateButton.Text = "Concentrate";
+            this.concentrateButton.UseVisualStyleBackColor = true;
+            this.concentrateButton.Click += new System.EventHandler(this.concentrateButton_Click);
+            // 
+            // syncButton
+            // 
+            this.syncButton.Location = new System.Drawing.Point(167, 166);
+            this.syncButton.Name = "syncButton";
+            this.syncButton.Size = new System.Drawing.Size(75, 23);
+            this.syncButton.TabIndex = 27;
+            this.syncButton.Text = "Synchronize";
+            this.syncButton.UseVisualStyleBackColor = true;
+            this.syncButton.Click += new System.EventHandler(this.syncButton_Click);
             // 
             // MainForm
             // 
@@ -387,6 +596,8 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,6 +635,25 @@
         private System.Windows.Forms.TextBox mergeOutputFileTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button inputDirBrowseButton;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox splitInputDirTextBox;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox splitDirNTextBox;
+        private System.Windows.Forms.TextBox descriptionDir4TextBox;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox descriptionDir3TextBox;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox descriptionDir2TextBox;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox descriptionDir1TextBox;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button disperseButton;
+        private System.Windows.Forms.Button concentrateButton;
+        private System.Windows.Forms.Button syncButton;
     }
 }
 

@@ -149,7 +149,7 @@ fsas[i].Dispose();
             return 0;
         }
 
-        private static void CreateDirectory(string path)
+        public static void CreateDirectory(string path)
         {
             try
             {
