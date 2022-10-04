@@ -126,8 +126,8 @@ namespace CloudExplorerSplitter
 
         private void disperseButton_Click(object sender, EventArgs e)
         {
-            //create folder
-            //create config file
+            //+create folder
+            //+create config file
             //create n folders
             //split every file; version 1: name without number
             //subdirectories??? how do directory name changes? 1 version without changes; 2 version: letters + hash
@@ -149,7 +149,14 @@ namespace CloudExplorerSplitter
             virtualDirectoryNames.Add(descriptionDir2TextBox.Text);
             if (n >= 3) { virtualDirectoryNames.Add(descriptionDir3TextBox.Text); }
             if (n >= 4) { virtualDirectoryNames.Add(descriptionDir4TextBox.Text); }
+            
+            List<string> virtualDirectoryPaths = new List<string>();
+            virtualDirectoryPaths.Add(additionalInfoDir1TextBox.Text);
+            virtualDirectoryPaths.Add(additionalInfoDir2TextBox.Text);
+            if (n >= 3) { virtualDirectoryPaths.Add(additionalInfoDir3TextBox.Text); }
+            if (n >= 4) { virtualDirectoryPaths.Add(additionalInfoDir4TextBox.Text); }
 
+            int createConfigFileResult = Disperser.CreateConfigFile(dirPath, n, virtualDirectoryNames, virtualDirectoryPaths);
             //int disperseResult = 0;
             int disperseResult = Disperser.Disperse(dirPath, n, virtualDirectoryNames);
             
@@ -169,6 +176,11 @@ namespace CloudExplorerSplitter
         private void syncButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Under construction");
+        }
+
+        private void generateFoldersButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
