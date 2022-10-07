@@ -83,65 +83,72 @@ namespace CloudExplorerSplitter
                 Splitter.CreateDirectory(pathForBase + virtualDirectoryName);
             }
 
-            //TODO: check 2 version of Split
-            //Split(string filePath, int n, List<string> outputFilePaths);
-
-            //empty files
-            /*for (int i = 0; i < n; i++)
+            string[] subdirectories = Directory.GetDirectories(dirPath);
+            foreach (string subdirectory in subdirectories)
             {
-                //append into every file
-                string pathForEmpty = pathForBase + i.ToString() + @"\." + dirName + @"-" + i.ToString() + @".txt";
-                try
+                List<string> virtualDirectoryPathAndNames = new List<string>();
+                foreach (var virtualDirectoryName in virtualDirectoryNames)
                 {
-                    File.Delete(pathForEmpty);
-                }
-                catch (IOException exception)
-                { }
-            }
-
-            //open n FileStreams
-            string[] pathFor = new string[n];
-            for (int i = 0; i < n; i++)
-            {
-                pathFor[i] = pathForBase + i.ToString() + @"\." + dirName + @"-" + i.ToString() + @".txt";
-            }
-            FileStream[] fsas = new FileStream[n];
-            for (int i = 0; i < n; i++)
-            {
-                fsas[i] = File.Open(pathFor[i], FileMode.Append, FileAccess.Write, FileShare.None);
-            }
-
-            //open file
-            using (FileStream fs = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.None))
-            {
-                byte[] barray = new byte[n];
-                //int rr = fs.Read(array, offset, n);
-                int rr = 0;
-                while ((rr = fs.Read(barray, 0, barray.Length)) > 0)
-                {
-                    for (int i = 0; i < rr; i++)
-                    {
-                        //append into every file
-                        fsas[i].Write(barray, i, 1);
-                    }
-
-                    //UTF8Encoding temp = new UTF8Encoding(true);
-                    //richTextBox1.AppendText(temp.GetString(barray, 0, rr) +"\n");
+                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + Path.GetFileName(subdirectory));
                 }
 
-                //Byte[] info = new UTF8Encoding(true).GetBytes("This is some text in the file.");
-                // Add some information to the file.
-                //fs.Write(info, 0, info.Length);
-                fs.Close();
+                DisperseSubdirectory(dirPath, Path.GetFileName(subdirectory), n, virtualDirectoryNames);
             }
 
-            //free streams
-            for (int i = 0; i < n; i++)
+            string[] fileNames = Directory.GetFiles(dirPath);
+            foreach(string filename in fileNames)
             {
-                fsas[i].Close();
-                fsas[i].Dispose();
+                List<string> virtualDirectoryPathAndNames = new List<string>();
+                foreach(var virtualDirectoryName in virtualDirectoryNames)
+                {
+                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + Path.GetFileName(filename));
+                }
+
+                Splitter.Split(filename, n, virtualDirectoryPathAndNames);
             }
-            fsas = null;*/
+            
+            return 0;
+        }
+
+        public static int DisperseSubdirectory(string dirPath, string subdirectoryPath, int n, List<string> virtualDirectoryNames)
+        {
+            string sourceDirPath = dirPath + @"\" + subdirectoryPath;
+
+            string dirPathWithoutDirectory = Path.GetDirectoryName(dirPath);
+            string dirName = Path.GetFileName(dirPath);
+            //create main folder
+            string path = dirPathWithoutDirectory + @"\." + dirName;
+            //Splitter.CreateDirectory(path);
+
+            string pathForBase = path + @"\";
+            foreach (var virtualDirectoryName in virtualDirectoryNames)
+            {
+                Splitter.CreateDirectory(pathForBase + virtualDirectoryName + @"\" + subdirectoryPath);
+            }
+
+            string[] subdirectories = Directory.GetDirectories(sourceDirPath);
+            foreach (string subdirectory in subdirectories)
+            {
+                List<string> virtualDirectoryPathAndNames = new List<string>();
+                foreach (var virtualDirectoryName in virtualDirectoryNames)
+                {
+                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + subdirectoryPath + @"\" + Path.GetFileName(subdirectory));
+                }
+
+                DisperseSubdirectory(dirPath, subdirectoryPath + @"\" + Path.GetFileName(subdirectory), n, virtualDirectoryNames);
+            }
+
+            string[] fileNames = Directory.GetFiles(sourceDirPath);
+            foreach (string filename in fileNames)
+            {
+                List<string> virtualDirectoryPathAndNames = new List<string>();
+                foreach (var virtualDirectoryName in virtualDirectoryNames)
+                {
+                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + subdirectoryPath + @"\" + Path.GetFileName(filename));
+                }
+
+                Splitter.Split(filename, n, virtualDirectoryPathAndNames);
+            }
 
             return 0;
         }
