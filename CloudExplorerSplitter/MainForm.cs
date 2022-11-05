@@ -126,6 +126,9 @@ namespace CloudExplorerSplitter
 
         private void disperseButton_Click(object sender, EventArgs e)
         {
+            //List<string> res = Splitter.SplitName("testowo", 3);
+            //return;
+
             //+create folder
             //+create config file
             //create n folders

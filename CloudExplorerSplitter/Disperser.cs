@@ -87,21 +87,27 @@ namespace CloudExplorerSplitter
             foreach (string subdirectory in subdirectories)
             {
                 List<string> virtualDirectoryPathAndNames = new List<string>();
+                Dictionary<string, string> splitedDirectoryNamesDict = Splitter.SplitNameWithKeyNames(Path.GetFileName(subdirectory), n, virtualDirectoryNames);
+                Dictionary<string, string> destinationSubdirectoryPath = Splitter.SplitNameWithKeyNames(Path.GetFileName(subdirectory), n, virtualDirectoryNames);
                 foreach (var virtualDirectoryName in virtualDirectoryNames)
                 {
-                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + Path.GetFileName(subdirectory));
+                    //virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + Path.GetFileName(subdirectory));
+                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + splitedDirectoryNamesDict[virtualDirectoryName]);
+                    destinationSubdirectoryPath[virtualDirectoryName] = @"";
                 }
 
-                DisperseSubdirectory(dirPath, Path.GetFileName(subdirectory), n, virtualDirectoryNames);
+                //DisperseSubdirectory(dirPath, Path.GetFileName(subdirectory), n, virtualDirectoryNames);
+                DisperseSubdirectory2(dirPath, @"", Path.GetFileName(subdirectory), destinationSubdirectoryPath, splitedDirectoryNamesDict, n, virtualDirectoryNames);
             }
 
             string[] fileNames = Directory.GetFiles(dirPath);
             foreach(string filename in fileNames)
             {
                 List<string> virtualDirectoryPathAndNames = new List<string>();
+                Dictionary<string, string> splitedNamesDict = Splitter.SplitNameWithKeyNames(Path.GetFileName(filename), n, virtualDirectoryNames);
                 foreach(var virtualDirectoryName in virtualDirectoryNames)
                 {
-                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + Path.GetFileName(filename));
+                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + splitedNamesDict[virtualDirectoryName]);
                 }
 
                 Splitter.Split(filename, n, virtualDirectoryPathAndNames);
@@ -123,7 +129,7 @@ namespace CloudExplorerSplitter
             string pathForBase = path + @"\";
             foreach (var virtualDirectoryName in virtualDirectoryNames)
             {
-                Splitter.CreateDirectory(pathForBase + virtualDirectoryName + @"\" + subdirectoryPath);
+                Splitter.CreateDirectory(pathForBase + virtualDirectoryName + @"\" + subdirectoryPath);//TODO: directory name change here
             }
 
             string[] subdirectories = Directory.GetDirectories(sourceDirPath);
@@ -142,9 +148,62 @@ namespace CloudExplorerSplitter
             foreach (string filename in fileNames)
             {
                 List<string> virtualDirectoryPathAndNames = new List<string>();
+                Dictionary<string, string> splitedNamesDict = Splitter.SplitNameWithKeyNames(Path.GetFileName(filename), n, virtualDirectoryNames);
                 foreach (var virtualDirectoryName in virtualDirectoryNames)
                 {
-                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + subdirectoryPath + @"\" + Path.GetFileName(filename));
+                    //virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + subdirectoryPath + @"\" + Path.GetFileName(filename));//TODO: file name change here
+                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + subdirectoryPath + @"\" + splitedNamesDict[virtualDirectoryName]);
+                }
+
+                Splitter.Split(filename, n, virtualDirectoryPathAndNames);
+            }
+
+            return 0;
+        }
+
+        public static int DisperseSubdirectory2(string dirPath, string sourceSubdirectoryPath, string sourceSubdirectory, Dictionary<string, string> destinationSubdirectoryPath, Dictionary<string, string> splitedSubdirectoryPath, int n, List<string> virtualDirectoryNames)
+        {
+            string sourceDirPath = dirPath + @"\" + sourceSubdirectoryPath + @"\" + sourceSubdirectory;
+            string sourceSubdirectoryPathForNext = sourceSubdirectoryPath + @"\" + sourceSubdirectory;
+
+            string dirPathWithoutDirectory = Path.GetDirectoryName(dirPath);
+            string dirName = Path.GetFileName(dirPath);
+            //create main folder
+            string path = dirPathWithoutDirectory + @"\." + dirName;
+            //Splitter.CreateDirectory(path);
+
+            string pathForBase = path + @"\";
+            foreach (var virtualDirectoryName in virtualDirectoryNames)
+            {
+                Splitter.CreateDirectory(pathForBase + virtualDirectoryName + @"\" + destinationSubdirectoryPath[virtualDirectoryName] + @"\" + splitedSubdirectoryPath[virtualDirectoryName]);//TODO: directory name change here
+            }
+
+            string[] subdirectories = Directory.GetDirectories(sourceDirPath);
+            foreach (string subdirectory in subdirectories)
+            {
+                List<string> virtualDirectoryPathAndNames = new List<string>();
+                Dictionary<string, string> splitedDirectoryNamesDict = Splitter.SplitNameWithKeyNames(Path.GetFileName(subdirectory), n, virtualDirectoryNames);
+                Dictionary<string, string> destinationSubdirectoryPathInternal = Splitter.SplitNameWithKeyNames(Path.GetFileName(subdirectory), n, virtualDirectoryNames);
+                foreach (var virtualDirectoryName in virtualDirectoryNames)
+                {
+                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + splitedSubdirectoryPath[virtualDirectoryName] + @"\" + splitedDirectoryNamesDict[virtualDirectoryName]);
+                    destinationSubdirectoryPathInternal[virtualDirectoryName] = destinationSubdirectoryPath[virtualDirectoryName];
+                    destinationSubdirectoryPathInternal[virtualDirectoryName] += @"\" + splitedSubdirectoryPath[virtualDirectoryName];
+                }
+
+                //DisperseSubdirectory(dirPath, sourceSubdirectoryPath + @"\" + Path.GetFileName(subdirectory), n, virtualDirectoryNames);
+                DisperseSubdirectory2(dirPath, sourceSubdirectoryPathForNext, Path.GetFileName(subdirectory), destinationSubdirectoryPathInternal, splitedDirectoryNamesDict, n, virtualDirectoryNames);
+            }
+
+            string[] fileNames = Directory.GetFiles(sourceDirPath);
+            foreach (string filename in fileNames)
+            {
+                List<string> virtualDirectoryPathAndNames = new List<string>();
+                Dictionary<string, string> splitedNamesDict = Splitter.SplitNameWithKeyNames(Path.GetFileName(filename), n, virtualDirectoryNames);
+                foreach (var virtualDirectoryName in virtualDirectoryNames)
+                {
+                    //virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + subdirectoryPath + @"\" + Path.GetFileName(filename));//TODO: file name change here
+                    virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + destinationSubdirectoryPath[virtualDirectoryName] + @"\" + splitedSubdirectoryPath[virtualDirectoryName] + @"\" + splitedNamesDict[virtualDirectoryName]);
                 }
 
                 Splitter.Split(filename, n, virtualDirectoryPathAndNames);

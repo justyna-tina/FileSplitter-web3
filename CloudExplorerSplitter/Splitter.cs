@@ -252,6 +252,43 @@ fsas[i].Dispose();
             return;
         }
 
+        public static List<string> SplitName(string name, int n)
+        {
+            //TODO: too long filename issue!!! and unique
+            string hashedName = HashString(name).Substring(1, 20);// Guid.NewGuid().ToString();// Base64Name(HashString(name)).Substring(1, 20);
+            List<string> splitedNames = new List<string>();
+            for (int i = 1; i <= n; i++)
+            {
+                splitedNames.Add("cd-"+ hashedName+"-"+i.ToString()+"-");
+            }
+
+            for (int i = 0; i < name.Length; i++)
+            {
+                splitedNames[i%n] += name.Substring(i, 1);
+            }
+
+            if (splitedNames.Count == n)
+            {
+                return splitedNames;
+            }
+            return null;
+        }
+
+        public static Dictionary<string, string> SplitNameWithKeyNames(string name, int n, List<string> keyNames)
+        {
+            List<string> splitedNames = SplitName(name, n);
+            if (splitedNames.Count == n)
+            {
+                var splitedNamesDict = new Dictionary<string, string>();
+                for (int i = 0; i < n; i++)
+                {
+                    splitedNamesDict.Add(keyNames[i], splitedNames[i]);
+                }
+                return splitedNamesDict;
+            }
+            return null;
+        }
+
         /*
         public static int Merge(string filename, int n, string directoryName = "")
         {
@@ -394,6 +431,20 @@ fsas[i].Dispose();
 
 
             return 0;
+        }
+
+        public static string Base64Name(string name)
+        {
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(name));
+        }
+
+        public static string HashString(string s)
+        {
+            SHA512 shaM = new SHA512Managed();
+            byte[] hashed = shaM.ComputeHash(Encoding.UTF8.GetBytes(s));
+            //string result = Encoding.UTF8.GetString(hashed);
+            string result = BitConverter.ToString(hashed).Replace("-", String.Empty);
+            return result;
         }
 
         public static int Hash(string filename)
