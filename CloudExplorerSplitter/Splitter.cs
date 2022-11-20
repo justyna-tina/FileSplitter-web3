@@ -289,6 +289,30 @@ fsas[i].Dispose();
             return null;
         }
 
+        public static string ConcentrateName(List<string> nameList)
+        {
+            string resultName = "";
+            //clear from hash, numbers and unnecessery parts
+            List<string> nameListPart = new List<string>();
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                int j1 = nameList[i].IndexOf('-');
+                int j2 = nameList[i].IndexOf('-', j1+1);
+                int j3 = nameList[i].IndexOf('-', j2+1);
+                nameListPart.Add(nameList[i].Substring(j3+1));
+            }
+
+            for (int i = 0; i < nameListPart[0].Length; i++)
+            {
+                for (int j = 0; j < nameListPart.Count; j ++)
+                {
+                    resultName += (nameListPart[j].Length > i) ? nameListPart[j].Substring(i, 1) : "";
+                }
+            }
+
+            return resultName;
+        }
+
         /*
         public static int Merge(string filename, int n, string directoryName = "")
         {
@@ -359,6 +383,70 @@ fsas[i].Dispose();
             for (int i = 0; i < n; i++)
             {
                 pathFor[i] = pathForBase + i.ToString() + @"\." + filename + @"-" + i.ToString() + @".txt";
+            }
+
+            //open n FileStreams
+            FileStream[] fsas = new FileStream[n];
+            for (int i = 0; i < n; i++)
+            {
+                fsas[i] = File.Open(pathFor[i], FileMode.Open, FileAccess.Read, FileShare.None);
+            }
+            bool endOfData = false;
+
+            //open file
+            File.Delete(filename);
+            using (FileStream fs = File.Open(outputFilePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+            {
+                byte[] barray = new byte[n];
+
+                while (endOfData == false)
+                {
+                    int dataLength = barray.Length;
+                    for (int i = 0; i < n; i++)
+                    {
+                        byte[] b = new byte[1];
+                        int rr = fsas[i].Read(b, 0, 1);
+                        if (rr <= 0)
+                        {
+                            endOfData = true;
+                            dataLength = i;
+                            break;
+                        }
+                        barray[i] = b[0];
+                    }
+
+                    fs.Write(barray, 0, dataLength);
+                }
+
+                fs.Close();
+            }
+
+            //free streams
+            for (int i = 0; i < n; i++)
+            {
+                fsas[i].Close();
+                fsas[i].Dispose();
+            }
+            fsas = null;
+
+            return 0;
+        }
+
+        public static int Merge(List<string> inputFilePath, int n, string outputFilePath = "")
+        {
+            if(inputFilePath.Count != n)
+            {
+                return -1;
+            }
+
+            string filename = Path.GetFileName(outputFilePath);
+            //create main folder
+            //string path = string.IsNullOrEmpty(inputDirectoryPath) ? @".\." + outputFilePath : inputDirectoryPath;
+            //string pathForBase = path + @"\." + filename + @"-";
+            string[] pathFor = new string[n];
+            for (int i = 0; i < n; i++)
+            {
+                pathFor[i] = inputFilePath[i];
             }
 
             //open n FileStreams

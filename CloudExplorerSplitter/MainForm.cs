@@ -147,6 +147,7 @@ namespace CloudExplorerSplitter
                 return;
             }
             string dirPath = splitInputDirTextBox.Text;
+            string splitedDirPath = splitOutputDirTextBox.Text;
             List<string> virtualDirectoryNames = new List<string>();
             virtualDirectoryNames.Add(descriptionDir1TextBox.Text);
             virtualDirectoryNames.Add(descriptionDir2TextBox.Text);
@@ -159,7 +160,7 @@ namespace CloudExplorerSplitter
             if (n >= 3) { virtualDirectoryPaths.Add(additionalInfoDir3TextBox.Text); }
             if (n >= 4) { virtualDirectoryPaths.Add(additionalInfoDir4TextBox.Text); }
 
-            int createConfigFileResult = Disperser.CreateConfigFile(dirPath, n, virtualDirectoryNames, virtualDirectoryPaths);
+            int createConfigFileResult = Disperser.CreateConfigFile(dirPath, splitedDirPath, n, virtualDirectoryNames, virtualDirectoryPaths);
             //int disperseResult = 0;
             int disperseResult = Disperser.Disperse(dirPath, n, virtualDirectoryNames);
             
@@ -173,7 +174,11 @@ namespace CloudExplorerSplitter
 
         private void concentrateButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Under construction");
+            int concentrateResult = Disperser.Concentrate(@".test1.config");
+            if (concentrateResult == 0)
+            {
+                richTextBox1.AppendText("Concentrated\n");
+            }
         }
 
         private void syncButton_Click(object sender, EventArgs e)
@@ -183,7 +188,14 @@ namespace CloudExplorerSplitter
 
         private void generateFoldersButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Under construction");
+        }
 
+        private void splitInputDirTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string tempDirecotryName = Path.GetFileName(splitInputDirTextBox.Text);
+            string parentPath = splitInputDirTextBox.Text.Remove(splitInputDirTextBox.Text.Length- tempDirecotryName.Length, tempDirecotryName.Length);
+            splitOutputDirTextBox.Text = parentPath + @"." + tempDirecotryName;
         }
     }
 }

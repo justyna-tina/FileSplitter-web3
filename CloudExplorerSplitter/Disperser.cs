@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -6,14 +7,14 @@ namespace CloudExplorerSplitter
 {
     public class Disperser
     {
-        public static int CreateConfigFile(string dirPath, int n, List<string> virtualDirectoryNames, List<string> virtualDirectoryPaths)
+        public static int CreateConfigFile(string dirPath, string splitedDirPath, int n, List<string> virtualDirectoryNames, List<string> virtualDirectoryPaths)
         {
             string dirPathWithoutDirectory = Path.GetDirectoryName(dirPath);
             string dirName = Path.GetFileName(dirPath);
             //create main folder
             string configFilePath = dirPathWithoutDirectory + @"\." + dirName + @".config";
 
-            ConfigFile configFileObject = new ConfigFile(dirPath, n, virtualDirectoryNames, virtualDirectoryPaths);
+            ConfigFile configFileObject = new ConfigFile(dirPath, splitedDirPath, n, virtualDirectoryNames, virtualDirectoryPaths);
 
             Disperser.WriteToXmlFile<ConfigFile>(configFilePath, configFileObject, false);
 
@@ -101,18 +102,18 @@ namespace CloudExplorerSplitter
             }
 
             string[] fileNames = Directory.GetFiles(dirPath);
-            foreach(string filename in fileNames)
+            foreach (string filename in fileNames)
             {
                 List<string> virtualDirectoryPathAndNames = new List<string>();
                 Dictionary<string, string> splitedNamesDict = Splitter.SplitNameWithKeyNames(Path.GetFileName(filename), n, virtualDirectoryNames);
-                foreach(var virtualDirectoryName in virtualDirectoryNames)
+                foreach (var virtualDirectoryName in virtualDirectoryNames)
                 {
                     virtualDirectoryPathAndNames.Add(path + @"\" + virtualDirectoryName + @"\" + splitedNamesDict[virtualDirectoryName]);
                 }
 
                 Splitter.Split(filename, n, virtualDirectoryPathAndNames);
             }
-            
+
             return 0;
         }
 
@@ -207,6 +208,113 @@ namespace CloudExplorerSplitter
                 }
 
                 Splitter.Split(filename, n, virtualDirectoryPathAndNames);
+            }
+
+            return 0;
+        }
+
+        public static int Concentrate(string configurationFilePath)
+        {
+            ConfigFile configFileObject = Disperser.ReadFromXmlFile<ConfigFile>(configurationFilePath);
+            //TODO: check if main folder and n folders exist
+            //TODO: don't get full path, because '-' char
+            //try to concentrate filename
+            string basePath = configFileObject.baseDestinationDirPath + @"\";
+            string sourceDirPath = basePath + configFileObject.virtualDirectoryNames[0];
+            List<string> virtualDirectoryNames = configFileObject.virtualDirectoryNames;
+
+            string destinationBasePath = configFileObject.dirPath;
+
+            //files
+            string[] fileNames = Directory.GetFiles(sourceDirPath);
+            foreach (string filename in fileNames)
+            {
+                //get the same part of filename
+                string theSameFilenamePart = Path.GetFileName(filename).Split('-')[1];
+                string searchPattern = @"*" + theSameFilenamePart + @"*";
+                List<string> nPartFilenames = new List<string>();
+                List<string> nPartFilePaths = new List<string>();
+                for (int i = 0; i < configFileObject.n; i++)
+                {
+                    string[] tt = Directory.GetFiles(basePath + configFileObject.virtualDirectoryNames[i], searchPattern);
+                    nPartFilenames.Add(Path.GetFileName(tt[0]));
+                    nPartFilePaths.Add(tt[0]);
+                }
+
+                string concentratedFilename = Splitter.ConcentrateName(nPartFilenames);
+
+                Splitter.Merge(nPartFilePaths, configFileObject.n, destinationBasePath + @"\" + concentratedFilename);
+            }
+
+            //directories
+            string[] dirNames = Directory.GetDirectories(sourceDirPath);
+            foreach (string dirName in dirNames)
+            {
+                //get the same part of filename
+                string theSameFilenamePart = Path.GetFileName(dirName).Split('-')[1];
+                string searchPattern = @"*" + theSameFilenamePart + @"*";
+                List<string> nPartFilenames = new List<string>();
+                for (int i = 0; i < configFileObject.n; i++)
+                {
+                    string[] tt = Directory.GetDirectories(basePath + configFileObject.virtualDirectoryNames[i], searchPattern);
+                    nPartFilenames.Add(Path.GetFileName(tt[0]));
+                }
+
+                string concentratedDirname = Splitter.ConcentrateName(nPartFilenames);
+                Splitter.CreateDirectory(destinationBasePath + @"\" + concentratedDirname);
+
+                //jump into directory
+                ConcentrateDirectory(concentratedDirname, destinationBasePath + @"\" + concentratedDirname, configFileObject.n, basePath, configFileObject.virtualDirectoryNames, nPartFilenames, destinationBasePath + @"\" + concentratedDirname);
+            }
+            
+            return 0;
+        }
+
+        public static int ConcentrateDirectory(string directoryName, string directoryPath, int n, string sourceBasePath, List<string> sourceDirectoryNames, List<string> sourceAfterBasePath, string destinationDirectoryPath)
+        {
+            string source0DirPath = sourceBasePath + sourceDirectoryNames[0] + @"\" + sourceAfterBasePath[0];
+            //files
+            string[] fileNames = Directory.GetFiles(source0DirPath);
+            foreach (string filename in fileNames)
+            {
+                //get the same part of filename
+                string theSameFilenamePart = Path.GetFileName(filename).Split('-')[1];
+                string searchPattern = @"*" + theSameFilenamePart + @"*";
+                List<string> nPartFilenames = new List<string>();
+                List<string> nPartFilePaths = new List<string>();
+                for (int i = 0; i < n; i++)
+                {
+                    string[] tt = Directory.GetFiles(sourceBasePath + sourceDirectoryNames[i] + @"\" + sourceAfterBasePath[i], searchPattern);
+                    nPartFilenames.Add(Path.GetFileName(tt[0]));
+                    nPartFilePaths.Add(tt[0]);
+                }
+
+                string concentratedFilename = Splitter.ConcentrateName(nPartFilenames);
+
+                Splitter.Merge(nPartFilePaths, n, destinationDirectoryPath + @"\" + concentratedFilename);
+            }
+
+            //directories
+            string[] dirNames = Directory.GetDirectories(source0DirPath);
+            foreach (string dirName in dirNames)
+            {
+                List<string> sourceAfterBasePathActual = new List<string>();
+                //get the same part of filename
+                string theSameFilenamePart = Path.GetFileName(dirName).Split('-')[1];
+                string searchPattern = @"*" + theSameFilenamePart + @"*";
+                List<string> nPartFilenames = new List<string>();
+                for (int i = 0; i < n; i++)
+                {
+                    string[] tt = Directory.GetDirectories(sourceBasePath + sourceDirectoryNames[i] + @"\" + sourceAfterBasePath[i], searchPattern);
+                    nPartFilenames.Add(Path.GetFileName(tt[0]));
+                    sourceAfterBasePathActual.Add(sourceAfterBasePath[i] + @"\" + Path.GetFileName(tt[0]));
+                }
+
+                string concentratedDirname = Splitter.ConcentrateName(nPartFilenames);
+                Splitter.CreateDirectory(destinationDirectoryPath + @"\" + concentratedDirname);
+
+                //jump into directory
+                ConcentrateDirectory(concentratedDirname, destinationDirectoryPath + @"\" + concentratedDirname, n, sourceBasePath, sourceDirectoryNames, sourceAfterBasePathActual, destinationDirectoryPath + @"\" + concentratedDirname);
             }
 
             return 0;

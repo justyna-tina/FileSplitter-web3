@@ -57,6 +57,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.mergeNTextBox = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.additionalInfoDir4TextBox = new System.Windows.Forms.TextBox();
+            this.additionalInfoDir3TextBox = new System.Windows.Forms.TextBox();
+            this.additionalInfoDir2TextBox = new System.Windows.Forms.TextBox();
+            this.additionalInfoDir1TextBox = new System.Windows.Forms.TextBox();
             this.generateFoldersButton = new System.Windows.Forms.Button();
             this.syncButton = new System.Windows.Forms.Button();
             this.concentrateButton = new System.Windows.Forms.Button();
@@ -78,10 +82,8 @@
             this.splitDirNTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.mainProgressBar = new System.Windows.Forms.ProgressBar();
-            this.additionalInfoDir1TextBox = new System.Windows.Forms.TextBox();
-            this.additionalInfoDir2TextBox = new System.Windows.Forms.TextBox();
-            this.additionalInfoDir3TextBox = new System.Windows.Forms.TextBox();
-            this.additionalInfoDir4TextBox = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.splitOutputDirTextBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -201,7 +203,7 @@
             this.mainTabControl.Location = new System.Drawing.Point(12, 27);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(776, 218);
+            this.mainTabControl.Size = new System.Drawing.Size(776, 284);
             this.mainTabControl.TabIndex = 9;
             // 
             // tabPage1
@@ -375,6 +377,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.splitOutputDirTextBox);
+            this.tabPage3.Controls.Add(this.label18);
             this.tabPage3.Controls.Add(this.additionalInfoDir4TextBox);
             this.tabPage3.Controls.Add(this.additionalInfoDir3TextBox);
             this.tabPage3.Controls.Add(this.additionalInfoDir2TextBox);
@@ -400,34 +404,67 @@
             this.tabPage3.Controls.Add(this.splitDirNTextBox);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(768, 192);
+            this.tabPage3.Size = new System.Drawing.Size(768, 258);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Cloud Dispersion";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // additionalInfoDir4TextBox
+            // 
+            this.additionalInfoDir4TextBox.Location = new System.Drawing.Point(248, 176);
+            this.additionalInfoDir4TextBox.Name = "additionalInfoDir4TextBox";
+            this.additionalInfoDir4TextBox.Size = new System.Drawing.Size(430, 20);
+            this.additionalInfoDir4TextBox.TabIndex = 32;
+            // 
+            // additionalInfoDir3TextBox
+            // 
+            this.additionalInfoDir3TextBox.Location = new System.Drawing.Point(248, 150);
+            this.additionalInfoDir3TextBox.Name = "additionalInfoDir3TextBox";
+            this.additionalInfoDir3TextBox.Size = new System.Drawing.Size(430, 20);
+            this.additionalInfoDir3TextBox.TabIndex = 31;
+            this.additionalInfoDir3TextBox.Text = ".\\.test1\\Dropbox; should be path on Dropbox";
+            // 
+            // additionalInfoDir2TextBox
+            // 
+            this.additionalInfoDir2TextBox.Location = new System.Drawing.Point(248, 124);
+            this.additionalInfoDir2TextBox.Name = "additionalInfoDir2TextBox";
+            this.additionalInfoDir2TextBox.Size = new System.Drawing.Size(430, 20);
+            this.additionalInfoDir2TextBox.TabIndex = 30;
+            this.additionalInfoDir2TextBox.Text = ".\\.test1\\MicrosoftOneDrive; should be path on OneDrive";
+            // 
+            // additionalInfoDir1TextBox
+            // 
+            this.additionalInfoDir1TextBox.Location = new System.Drawing.Point(248, 98);
+            this.additionalInfoDir1TextBox.Name = "additionalInfoDir1TextBox";
+            this.additionalInfoDir1TextBox.Size = new System.Drawing.Size(430, 20);
+            this.additionalInfoDir1TextBox.TabIndex = 29;
+            this.additionalInfoDir1TextBox.Text = ".\\.test1\\GoogleDrive; should be path on GoogleDrive";
+            // 
             // generateFoldersButton
             // 
-            this.generateFoldersButton.Location = new System.Drawing.Point(248, 166);
+            this.generateFoldersButton.Location = new System.Drawing.Point(245, 232);
             this.generateFoldersButton.Name = "generateFoldersButton";
             this.generateFoldersButton.Size = new System.Drawing.Size(132, 23);
             this.generateFoldersButton.TabIndex = 28;
             this.generateFoldersButton.Text = "Generate Folders";
             this.generateFoldersButton.UseVisualStyleBackColor = true;
+            this.generateFoldersButton.Visible = false;
             this.generateFoldersButton.Click += new System.EventHandler(this.generateFoldersButton_Click);
             // 
             // syncButton
             // 
-            this.syncButton.Location = new System.Drawing.Point(167, 166);
+            this.syncButton.Location = new System.Drawing.Point(164, 232);
             this.syncButton.Name = "syncButton";
             this.syncButton.Size = new System.Drawing.Size(75, 23);
             this.syncButton.TabIndex = 27;
             this.syncButton.Text = "Synchronize";
             this.syncButton.UseVisualStyleBackColor = true;
+            this.syncButton.Visible = false;
             this.syncButton.Click += new System.EventHandler(this.syncButton_Click);
             // 
             // concentrateButton
             // 
-            this.concentrateButton.Location = new System.Drawing.Point(86, 166);
+            this.concentrateButton.Location = new System.Drawing.Point(83, 232);
             this.concentrateButton.Name = "concentrateButton";
             this.concentrateButton.Size = new System.Drawing.Size(75, 23);
             this.concentrateButton.TabIndex = 26;
@@ -437,7 +474,7 @@
             // 
             // disperseButton
             // 
-            this.disperseButton.Location = new System.Drawing.Point(6, 166);
+            this.disperseButton.Location = new System.Drawing.Point(3, 232);
             this.disperseButton.Name = "disperseButton";
             this.disperseButton.Size = new System.Drawing.Size(75, 23);
             this.disperseButton.TabIndex = 25;
@@ -448,7 +485,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(3, 57);
+            this.label17.Location = new System.Drawing.Point(3, 101);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(63, 13);
             this.label17.TabIndex = 24;
@@ -456,7 +493,7 @@
             // 
             // descriptionDir4TextBox
             // 
-            this.descriptionDir4TextBox.Location = new System.Drawing.Point(86, 132);
+            this.descriptionDir4TextBox.Location = new System.Drawing.Point(86, 176);
             this.descriptionDir4TextBox.Name = "descriptionDir4TextBox";
             this.descriptionDir4TextBox.Size = new System.Drawing.Size(156, 20);
             this.descriptionDir4TextBox.TabIndex = 23;
@@ -464,7 +501,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(67, 135);
+            this.label16.Location = new System.Drawing.Point(67, 179);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(13, 13);
             this.label16.TabIndex = 22;
@@ -472,7 +509,7 @@
             // 
             // descriptionDir3TextBox
             // 
-            this.descriptionDir3TextBox.Location = new System.Drawing.Point(86, 106);
+            this.descriptionDir3TextBox.Location = new System.Drawing.Point(86, 150);
             this.descriptionDir3TextBox.Name = "descriptionDir3TextBox";
             this.descriptionDir3TextBox.Size = new System.Drawing.Size(156, 20);
             this.descriptionDir3TextBox.TabIndex = 21;
@@ -481,7 +518,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(67, 109);
+            this.label15.Location = new System.Drawing.Point(67, 153);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(13, 13);
             this.label15.TabIndex = 20;
@@ -489,7 +526,7 @@
             // 
             // descriptionDir2TextBox
             // 
-            this.descriptionDir2TextBox.Location = new System.Drawing.Point(86, 80);
+            this.descriptionDir2TextBox.Location = new System.Drawing.Point(86, 124);
             this.descriptionDir2TextBox.Name = "descriptionDir2TextBox";
             this.descriptionDir2TextBox.Size = new System.Drawing.Size(156, 20);
             this.descriptionDir2TextBox.TabIndex = 19;
@@ -498,7 +535,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(67, 83);
+            this.label14.Location = new System.Drawing.Point(67, 127);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(13, 13);
             this.label14.TabIndex = 18;
@@ -506,7 +543,7 @@
             // 
             // descriptionDir1TextBox
             // 
-            this.descriptionDir1TextBox.Location = new System.Drawing.Point(86, 54);
+            this.descriptionDir1TextBox.Location = new System.Drawing.Point(86, 98);
             this.descriptionDir1TextBox.Name = "descriptionDir1TextBox";
             this.descriptionDir1TextBox.Size = new System.Drawing.Size(156, 20);
             this.descriptionDir1TextBox.TabIndex = 17;
@@ -515,7 +552,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(67, 57);
+            this.label13.Location = new System.Drawing.Point(67, 101);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(13, 13);
             this.label13.TabIndex = 16;
@@ -549,11 +586,12 @@
             this.splitInputDirTextBox.Size = new System.Drawing.Size(592, 20);
             this.splitInputDirTextBox.TabIndex = 10;
             this.splitInputDirTextBox.Text = ".\\test1";
+            this.splitInputDirTextBox.TextChanged += new System.EventHandler(this.splitInputDirTextBox_TextChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 33);
+            this.label11.Location = new System.Drawing.Point(3, 77);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(68, 13);
             this.label11.TabIndex = 12;
@@ -562,7 +600,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(148, 33);
+            this.label12.Location = new System.Drawing.Point(148, 77);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(99, 13);
             this.label12.TabIndex = 13;
@@ -570,7 +608,7 @@
             // 
             // splitDirNTextBox
             // 
-            this.splitDirNTextBox.Location = new System.Drawing.Point(86, 30);
+            this.splitDirNTextBox.Location = new System.Drawing.Point(86, 74);
             this.splitDirNTextBox.Name = "splitDirNTextBox";
             this.splitDirNTextBox.Size = new System.Drawing.Size(56, 20);
             this.splitDirNTextBox.TabIndex = 14;
@@ -581,7 +619,7 @@
             this.panel1.Controls.Add(this.mainProgressBar);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 247);
+            this.panel1.Location = new System.Drawing.Point(0, 313);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 203);
             this.panel1.TabIndex = 10;
@@ -597,42 +635,29 @@
             this.mainProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.mainProgressBar.TabIndex = 4;
             // 
-            // additionalInfoDir1TextBox
+            // label18
             // 
-            this.additionalInfoDir1TextBox.Location = new System.Drawing.Point(248, 54);
-            this.additionalInfoDir1TextBox.Name = "additionalInfoDir1TextBox";
-            this.additionalInfoDir1TextBox.Size = new System.Drawing.Size(430, 20);
-            this.additionalInfoDir1TextBox.TabIndex = 29;
-            this.additionalInfoDir1TextBox.Text = ".\\.test1\\GoogleDrive; should be path on GoogleDrive";
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(3, 36);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(82, 13);
+            this.label18.TabIndex = 33;
+            this.label18.Text = "Output directory";
             // 
-            // additionalInfoDir2TextBox
+            // splitOutputDirTextBox
             // 
-            this.additionalInfoDir2TextBox.Location = new System.Drawing.Point(248, 80);
-            this.additionalInfoDir2TextBox.Name = "additionalInfoDir2TextBox";
-            this.additionalInfoDir2TextBox.Size = new System.Drawing.Size(430, 20);
-            this.additionalInfoDir2TextBox.TabIndex = 30;
-            this.additionalInfoDir2TextBox.Text = ".\\.test1\\MicrosoftOneDrive; should be path on OneDrive";
-            // 
-            // additionalInfoDir3TextBox
-            // 
-            this.additionalInfoDir3TextBox.Location = new System.Drawing.Point(248, 106);
-            this.additionalInfoDir3TextBox.Name = "additionalInfoDir3TextBox";
-            this.additionalInfoDir3TextBox.Size = new System.Drawing.Size(430, 20);
-            this.additionalInfoDir3TextBox.TabIndex = 31;
-            this.additionalInfoDir3TextBox.Text = ".\\.test1\\Dropbox; should be path on Dropbox";
-            // 
-            // additionalInfoDir4TextBox
-            // 
-            this.additionalInfoDir4TextBox.Location = new System.Drawing.Point(248, 132);
-            this.additionalInfoDir4TextBox.Name = "additionalInfoDir4TextBox";
-            this.additionalInfoDir4TextBox.Size = new System.Drawing.Size(430, 20);
-            this.additionalInfoDir4TextBox.TabIndex = 32;
+            this.splitOutputDirTextBox.Enabled = false;
+            this.splitOutputDirTextBox.Location = new System.Drawing.Point(83, 33);
+            this.splitOutputDirTextBox.Name = "splitOutputDirTextBox";
+            this.splitOutputDirTextBox.Size = new System.Drawing.Size(595, 20);
+            this.splitOutputDirTextBox.TabIndex = 34;
+            this.splitOutputDirTextBox.Text = ".\\.test1";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 516);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.menuStrip1);
@@ -710,6 +735,8 @@
         private System.Windows.Forms.TextBox additionalInfoDir3TextBox;
         private System.Windows.Forms.TextBox additionalInfoDir2TextBox;
         private System.Windows.Forms.TextBox additionalInfoDir1TextBox;
+        private System.Windows.Forms.TextBox splitOutputDirTextBox;
+        private System.Windows.Forms.Label label18;
     }
 }
 
